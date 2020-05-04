@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="952a18a4-0212-4cdf-94f0-5ecc557c4855" name="Default Changelist" comment="">
+    <list default="true" id="952a18a4-0212-4cdf-94f0-5ecc557c4855" name="Default Changelist" comment="提交代码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +184,7 @@
       <workItem from="1583435943439" duration="672000" />
       <workItem from="1585990187399" duration="666000" />
       <workItem from="1588609513214" duration="958000" />
-      <workItem from="1588610543242" duration="664000" />
+      <workItem from="1588610543242" duration="1869000" />
     </task>
     <task id="LOCAL-00001" summary="提交代码">
       <created>1588610874453</created>
@@ -200,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588611023145</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="提交代码">
+      <created>1588611319626</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588611319626</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -235,22 +242,34 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="23" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1588610705333" />
-    <state x="283" y="0" key="CommitChangelistDialog2" timestamp="1588611020943">
+    <state x="283" y="0" key="CommitChangelistDialog2" timestamp="1588611807955">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="283" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588611020943" />
-    <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1588610756812">
+    <state x="283" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1588611807955" />
+    <state x="129" y="61" key="DiffContextDialog" timestamp="1588611805444">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588610756812" />
-    <state x="184" y="6" key="SettingsEditor" timestamp="1588610471966">
+    <state x="129" y="61" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1588611805444" />
+    <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1588612371016">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1588610471966" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588610964501">
+    <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588612371016" />
+    <state x="542" y="75" key="RollbackChangesDialog" timestamp="1588611725915">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588610964501" />
+    <state x="542" y="75" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1588611725915" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1588612093580">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1588612093580" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1588612433709">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588612433709" />
+    <state x="467" y="155" key="git4idea.merge.GitPullDialog" timestamp="1588612414521">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="467" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1588612414521" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

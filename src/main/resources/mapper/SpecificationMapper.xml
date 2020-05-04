@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.dao.SpecificationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zw.beans.Specification">
+        <id column="specification_id" property="specificationId" />
+        <result column="name" property="name" />
+        <result column="createtime" property="createtime" />
+        <result column="modifytime" property="modifytime" />
+        <result column="shop_id" property="shopId" />
+        <result column="creator" property="creator" />
+        <result column="status" property="status" />
+        <result column="dr" property="dr" />
+        <!-- 关联对象 -->
+        <association property="category" javaType="com.zw.beans.Category">
+            <!-- 关联条件Employee的dept_id对应着Department的id -->
+            <id column="category_id" property="categoryId"/>
+            <result column="categoryName" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="getSpecificationList" parameterType="SpecificationRequestDTO" resultMap="BaseResultMap">
+    select  k.specification_id,
+    k.name,
+    k.createtime,
+    k.modifytime,
+    k.shop_id,
+    k.creator,
+    k.dr,
+    r.name as categoryName
+    from tbz_specification k,tbz_category r
+    <where>
+        <if test="id != null and id !=''">
+            k.supplier_id=#{id}
+        </if>
+        <if test="name != null and name !=''">
+            and k.name LIKE '%${name}%'
+        </if>
+        <if test="shopId != null and shopId !=''">
+            and k.shop_id=#{shopId}
+        </if>
+        <if test="status != null  and status !=''">
+            and k.status=#{status}
+        </if>
+        <if test="categoryId != null  and categoryId !=''">
+            and r.category_id=#{categoryId}
+        </if>
+        and k.dr=0 and k.category_id=r.category_id
+    </where>
+    </select>
+
+    <insert id="AddSpecification" parameterType="com.zw.beans.Specification">
+        <selectKey keyProperty="specificationId" resultType="java.lang.String" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+    insert into
+    tbz_specification
+    (specification_id,name,creator,status,shop_id,createtime,modifytime,category_id,dr)
+    values
+    (#{specificationId},#{name},#{creator},#{status},#{shopId},#{createtime},#{modifytime},#{category.categoryId},#{dr})
+    </insert>
+
+    <update id="UpdateSpecification" parameterType="Specification">
+        UPDATE tbz_specification
+        <set>
+            <if test="name!= null and name!=''">name= #{name,jdbcType=VARCHAR},</if>
+            <if test="status!= null and status !=''">status= #{status,jdbcType=VARCHAR},</if>
+            <if test="modifytime!= null">modifytime= #{modifytime,jdbcType=DATE},</if>
+            <if test="category!= null and category.categoryId!=null and category.categoryId!=''">
+            category_id= #{category.categoryId,jdbcType=VARCHAR},</if>
+        </set>
+        where specification_id=#{specificationId} and shop_id= #{shopId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="DeleteSpecification" parameterType="java.util.List">
+        <if test="list!=null">
+            update tbz_specification set dr=1
+            where specification_id in
+            <foreach collection="list" item="id" index= "index" open="(" close=")" separator =",">
+                #{id}
+            </foreach>
+        </if>
+    </update>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        specification_id, specification, createtime, modifytime, category_id, shop_id, supplier_id, dr
+    </sql>
+
+</mapper>

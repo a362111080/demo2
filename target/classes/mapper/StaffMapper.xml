@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.dao.StaffMapper">
+    <select id="listRepertoryByCondition" resultType="com.zw.beans.Staff">
+        SELECT * from tbz_staff ${ew.customSqlSegment}
+    </select>
+    <update id="UpdateStaff" parameterType="com.zw.beans.Staff">
+        update tbz_staff
+        <set>
+            <if test="name!= null and name!=''">name= #{name,jdbcType=VARCHAR},</if>
+            <if test="remark!= null and remark!=''">remark= #{remark,jdbcType=VARCHAR},</if>
+            <if test="phone!= null and phone!=''">phone= #{phone,jdbcType=VARCHAR},</if>
+            <if test="status!= null and status !=''">status= #{status,jdbcType=VARCHAR},</if>
+            <if test="modifytime!= null">modifytime= #{modifytime,jdbcType=DATE},</if>
+            <if test="cityId!= null">city_id= #{cityId,jdbcType=VARCHAR},</if>
+        </set>where staff_id= #{staffId,jdbcType=VARCHAR} and shop_id= #{shopId,jdbcType=VARCHAR}</update>
+
+    <update id="DeleteStaff" parameterType="java.util.List">
+        <if test="list!=null">
+            update tbz_staff set dr=1
+            where staff_id in
+            <foreach collection="list" item="id" index= "index" open="(" close=")" separator =",">
+                #{id}
+            </foreach>
+        </if>
+    </update>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        staff_id, name, phone, state, remark, dr, shop_id, createtime, modifytime, creator
+    </sql>
+
+</mapper>

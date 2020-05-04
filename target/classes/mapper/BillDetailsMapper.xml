@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.dao.BillDetailsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zw.beans.BillDetails">
+        <id column="id" property="id" />
+        <result column="bill_id" property="billId" />
+        <result column="shop_id" property="shopId" />
+        <result column="quantity" property="quantity" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+        <result column="creator" property="creator" />
+        <result column="createtime" property="createtime" />
+        <result column="modifytime" property="modifytime" />
+        <result column="partner_id" property="partnerId" />
+        <result column="price" property="price" />
+        <result column="category_id" property="categoryId" />
+        <result column="specification_id" property="specificationId" />
+        <result column="dr" property="dr" />
+    </resultMap>
+
+        <select id="getbilldetsils"  resultType="com.zw.beans.BillDetails">
+        select b.name ,a.*,d.name,c.name
+        from tbz_bill_details a
+        left join tbz_category b on b.category_id=a.category_id
+        left join tbz_partner c on c.partner_id=a.partner_id
+        left join tbz_specification d on d.specification_id=a.specification_id
+        where  a.bill_id=#{billId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, bill_id, shop_id, quantity, status, remark, creator, createtime, modifytime, partner_id, price, category_id, specification_id, dr
+    </sql>
+
+</mapper>

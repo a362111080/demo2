@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.dao.PartnerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zw.beans.Partner">
+        <id column="partner_id" property="partnerId" />
+        <result column="shop_id" property="shopId" />
+        <result column="name" property="name" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+        <result column="city_id" property="cityId" />
+        <result column="phone" property="phone" />
+        <result column="createtime" property="createtime" />
+        <result column="modifytime" property="modifytime" />
+        <result column="dr" property="dr" />
+    </resultMap>
+
+
+    <insert id="AddSupplier" parameterType="Supplier">
+    insert into
+    tbz_supplier(supplier_id,name,phone,status,remark,shop_id,createtime,modifytime,city_id,dr)
+    values (REPLACE(UUID(),'-',''),
+    (select a.spcode from
+    (SELECT CONCAT('SP',LPAD((SELECT COUNT(1)+1 from tbz_supplier),4,'0')) as spcode
+    FROM DUAL) a),#{name},#{phone},#{status},#{remark},#{shopid}},#{createtime},#{modifytime},#{cityId},#{dr})
+    </insert>
+
+    <update id="UpdatePartner" parameterType="Partner">update tbz_partner
+        <set>
+            <if test="name!= null and name!=''">name= #{name,jdbcType=VARCHAR},</if>
+            <if test="remark!= null and remark!=''">remark= #{remark,jdbcType=VARCHAR},</if>
+            <if test="phone!= null and phone!=''">phone= #{phone,jdbcType=VARCHAR},</if>
+            <if test="status!= null and status !=''">status= #{status,jdbcType=VARCHAR},</if>
+            <if test="modifytime!= null">modifytime= #{modifytime,jdbcType=DATE},</if>
+            <if test="cityId!= null">city_id= #{cityId,jdbcType=VARCHAR},</if>
+        </set>where partner_id= #{partnerId,jdbcType=VARCHAR} and shop_id= #{shopId,jdbcType=VARCHAR}</update>
+
+    <select id="GetPartnerList" parameterType="PartnerRequestDTO" resultType="com.zw.beans.Partner">
+        select  k.*from tbz_partner k
+        <where>
+            <if test="id != null and id !=''">
+                k.partner_id=#{id}
+            </if>
+            <if test="name != null and name !=''">
+                and k.name LIKE '%${name}%'
+            </if>
+            <if test="shopId != null and shopId !=''">
+                and k.shop_id=#{shopId}
+            </if>
+            <if test="status != null  and status !=''">
+                and k.status=#{status}
+            </if>
+            and k.dr=0
+        </where>
+    </select>
+    <update id="DeletePartner" parameterType="java.util.List">
+        <if test="list!=null">
+            update tbz_partner set dr=1
+            where partner_id in
+            <foreach collection="list" item="id" index= "index" open="(" close=")" separator =",">
+                #{id}
+            </foreach>
+        </if>
+    </update>
+
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        partner_id, shop_id, name, status, remark, city_id, phone, createtime, modifytime, dr
+    </sql>
+
+</mapper>

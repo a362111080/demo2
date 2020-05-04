@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.dao.RepertoryMapper">
+
+    <select id="listRepertoryByCondition" resultType="com.zw.beans.Repertory">
+	SELECT re.*,c.name as categoryName ,s.name as specificationName
+	FROM tbz_repertory re
+	LEFT JOIN tbz_category c ON re.category_id = c.category_id
+	LEFT JOIN tbz_specification s ON re.specification_id = s.specification_id
+	${ew.customSqlSegment}
+	</select>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        repertory_id, category_id, sum, specification, createtime, modifytime, dr
+    </sql>
+
+</mapper>
